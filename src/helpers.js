@@ -5,7 +5,7 @@ export function getFirstLetters(inputString) {
     return result;
 }
 
-export function bytesToMB(bytes) {
+export function bytesToMB(bytes) { 
     return bytes / (1024 * 1024);
 }
 
