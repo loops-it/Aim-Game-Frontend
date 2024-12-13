@@ -3,7 +3,7 @@ import { BASE_API_URL } from './config';
 
 
 export const api = axios.create({
-    baseURL: "https://aim-game-backend.vercel.app",
+    baseURL: "https://aim-game-backend-beta.vercel.app",
 });
 
 
