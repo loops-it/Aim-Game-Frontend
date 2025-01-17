@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import  { useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import MainInput from "../../MainInput";
 import MainSelect from "../../MainSelect";
-import MainMultipleSelect from "../../MainMultipleSelect";
+// import MainMultipleSelect from "../../MainMultipleSelect";
 import MainImageInput from "../../MainImageInput";
 import api from "../../../services/api";
 
@@ -290,6 +291,7 @@ export default function CreateUpdateModal({ show, onClose, data }) {
             {team?.image && (
               <div className="mt-4 flex justify-center">
                 <button
+                style={{fontSize: "14px"}}
                   onClick={() => setTeam({ ...team, image: null })}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
                 >

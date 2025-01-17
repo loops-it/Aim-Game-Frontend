@@ -368,6 +368,7 @@ export default function CreateUpdateModal({
             {client?.photo && (
               <div className="mt-4 flex justify-center">
                 <button
+                style={{fontSize: "14px"}}
                   onClick={() => setClient({ ...client, photo: null })}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
                 >
