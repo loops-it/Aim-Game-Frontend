@@ -50,13 +50,13 @@ export default function Clients({ title }) {
                 const data = response.data.data;
                 setIndustryTypes(data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                // console.error('Error fetching data:', error);
             }
         };
 
         fetchData();
     }, []);
-    console.log("industryTypes data : ", industryTypes);
+    // console.log("industryTypes data : ", industryTypes);
 
 
 
@@ -101,7 +101,7 @@ export default function Clients({ title }) {
                 // Fetch opportunities for each workspace
                 const clientsData = [];
                 for (const workspace of workspacesData) {
-                    console.log('WSID:', workspace._id);
+                    // console.log('WSID:', workspace._id);
                     const clientsResponse = await api.get(`/api-v1/clients/workspace/${workspace._id}`);
                     const clientsForWorkspace = clientsResponse.data.data;
                     clientsData.push(...clientsForWorkspace);
@@ -110,7 +110,7 @@ export default function Clients({ title }) {
                 setClients(clientsData);
                 
             } catch (error) {
-                console.error('Error fetching data:', error);
+                // console.error('Error fetching data:', error);
             }
         };
     
@@ -125,7 +125,7 @@ export default function Clients({ title }) {
             const data = response.data.data;
             setAllWorkspaces(data);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            // console.error('Error fetching data:', error);
         }
     };
     useEffect(() => {
@@ -139,9 +139,9 @@ export default function Clients({ title }) {
             const response = await api.get('/api-v1/clients');
             setAllClients(response.data.data);
             document.getElementById("page-loader").style.display = 'none';
-            console.log("allClients2 : ", response.data.data)
+            // console.log("allClients2 : ", response.data.data)
         } catch (error) {
-            console.error('Error fetching workspaces:', error);
+            // console.error('Error fetching workspaces:', error);
             document.getElementById("page-loader").style.display = 'none';
         }
     };
@@ -154,7 +154,7 @@ export default function Clients({ title }) {
                 const response = await api.get(`/api-v1/clients/${searchValue}`);
                 const data = response.data.data;
                 // setClients(data.data);
-                console.log('Search results:', data);
+                // console.log('Search results:', data);
             } catch (error) {
                 console.error('Error fetching data by id:', error);
             }
@@ -162,7 +162,8 @@ export default function Clients({ title }) {
     };
 
 
-   
+   console.log("selected data : ", selectedData)
+   console.log("allClients : ", allClients)
     // console.log(clients)
     const paginatedData = allClients.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
     return (
@@ -256,6 +257,7 @@ export default function Clients({ title }) {
                     <tbody>
                         {paginatedData?.map((row, index) => {
                             const formattedDate = new Date(row?.createdAt).toLocaleDateString();
+                            
                             return (
                                 <tr key={index} className="bg-white border-b text-gray-900 ">
                                     <td className="py-5 px-6" >{row?._id}</td>
@@ -270,7 +272,7 @@ export default function Clients({ title }) {
                                     </td>
                                     <td className="py-5 px-6" >{formattedDate}</td>
                                     <td className="py-5 px-6" >{row?.name}</td>
-                                    <td className="py-5 px-6" >{row?.industryTypeId ? row.industryTypeId.name : "-"}</td>
+                                    <td className="py-5 px-6" >{row?.industryTypeId.name}</td>
                                     <td className="py-5 px-6" >{row?.address}</td>
                                     <td className="py-5 px-6" >{row?.phone}</td>
                                     <td className="py-5 px-6" >{row?.email}</td>
@@ -297,7 +299,10 @@ export default function Clients({ title }) {
                 allworkspaces={allworkspaces}
                 clients={clients}
                 show={show}
-                onClose={() => setShow(false)}
+                onClose={() => {
+                    setShow(false)
+                    fetchClients();
+                }}
             />
             <SearchModal
                 list={allClients}

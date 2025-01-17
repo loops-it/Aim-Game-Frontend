@@ -129,7 +129,7 @@ export default function CreateUpdateModal({
 
       }
     } catch (error) {
-      console.error("Error creating Client:", error);
+      // console.error("Error creating Client:", error);
       document.getElementById("page-loader").style.display = "none";
       setError(error.message);
       setLoading(false);
@@ -285,8 +285,8 @@ export default function CreateUpdateModal({
   const selectedWorkspace = allworkspaces?.find(
     (workspace) => workspace._id === client?.workspaceId
   );
-  console.log("Selected WOrkspace:", selectedWorkspace);
-  console.log("workspaceId:", client.workspaceId);
+  // console.log("Selected WOrkspace:", selectedWorkspace);
+  // console.log("workspaceId:", client.workspaceId);
 
   const selectedIndustryType = industryTypes?.find(
     (industry) => industry._id === client?.industryTypeId
@@ -296,19 +296,21 @@ export default function CreateUpdateModal({
   // client.industryTypeId = client?.industryTypeId?._id;
   // let SelectedIndustryTypeId = client
 
-  console.log("industryTypeId:", client);
+  // console.log("industryTypeId:", client);
   if (client.industryTypeId && client.industryTypeId._id) {
     client.industryTypeId = client.industryTypeId._id;
   }
 
-  console.log("industryTypeId changed:", client);
-  console.log("Selected Industry:", selectedIndustryType);
+  // console.log("industryTypeId changed:", client);
+  // console.log("Selected Industry:", selectedIndustryType);
 
   // const clientIndustryTypeId = client?.industryTypeId?._id;
   // const selectedIndustryType = industryTypes?.find(industry => industry._id === clientIndustryTypeId);
   // console.log("Selected Industry:", selectedIndustryType);
 
   // console.log("industryTypes : ", industryTypes)
+
+  // console.log("client photo : ", client.photo)
 
   return (
     <Transition
