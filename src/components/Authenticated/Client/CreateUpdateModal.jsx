@@ -370,7 +370,7 @@ export default function CreateUpdateModal({
                 <button
                 style={{fontSize: "14px"}}
                   onClick={() => setClient({ ...client, photo: null })}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600"
                 >
                   Remove Image
                 </button>
