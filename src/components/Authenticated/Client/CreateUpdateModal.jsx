@@ -9,6 +9,8 @@ import MainMultipleSelect from "../../MainMultipleSelect";
 import MainImageInput from "../../MainImageInput";
 import api from "../../../services/api";
 import MainSelectLead from "../../MainSelectLead";
+import MainSelectIndustry from "../../MainSelectIndustry";
+
 const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
 const initialState = {
@@ -97,7 +99,7 @@ export default function CreateUpdateModal({
         setError(
           `Please fill in all required fields: ${missingFields.join(", ")}.`
         );
-        
+
         setSuccess(null);
         setLoading(false);
         return;
@@ -243,7 +245,7 @@ export default function CreateUpdateModal({
         setError(
           `Please fill in all required fields: ${missingFields.join(", ")}.`
         );
-        
+
         setSuccess(null);
         return;
       }
@@ -401,7 +403,7 @@ export default function CreateUpdateModal({
                             placeholder={"Please Select Industry Type"}
                             options={industryTypes}
                         /> */}
-            <MainSelectLead
+            {/* <MainSelectIndustry
               disabled={loading}
               value={selectedIndustryType}
               onChange={(value) =>
@@ -413,7 +415,22 @@ export default function CreateUpdateModal({
               label={"Industry Type"}
               placeholder={"Please Select Industry Type"}
               options={industryTypes}
+            /> */}
+
+            <MainSelectLead
+              disabled={loading}
+              value={selectedIndustryType || null}
+              onChange={(value) =>
+                setClient({
+                  ...client,
+                  industryTypeId: value?._id || "",
+                })
+              }
+              label={"Industry Type"}
+              placeholder={"Please Select Industry Type"}
+              options={industryTypes}
             />
+
 
             <MainInput
               disabled={loading}
