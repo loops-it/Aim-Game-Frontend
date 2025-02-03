@@ -9,6 +9,8 @@ import MainMultipleSelect from "../../MainMultipleSelect";
 import MainImageInput from "../../MainImageInput";
 import api from "../../../services/api";
 import MainSelectLead from "../../MainSelectLead";
+import MainSelectIndustry from "../../MainSelectIndustry";
+
 const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
 const initialState = {
@@ -97,7 +99,7 @@ export default function CreateUpdateModal({
         setError(
           `Please fill in all required fields: ${missingFields.join(", ")}.`
         );
-        
+
         setSuccess(null);
         setLoading(false);
         return;
@@ -129,7 +131,7 @@ export default function CreateUpdateModal({
 
       }
     } catch (error) {
-      console.error("Error creating Client:", error);
+      // console.error("Error creating Client:", error);
       document.getElementById("page-loader").style.display = "none";
       setError(error.message);
       setLoading(false);
@@ -243,7 +245,7 @@ export default function CreateUpdateModal({
         setError(
           `Please fill in all required fields: ${missingFields.join(", ")}.`
         );
-        
+
         setSuccess(null);
         return;
       }
@@ -285,8 +287,8 @@ export default function CreateUpdateModal({
   const selectedWorkspace = allworkspaces?.find(
     (workspace) => workspace._id === client?.workspaceId
   );
-  console.log("Selected WOrkspace:", selectedWorkspace);
-  console.log("workspaceId:", client.workspaceId);
+  // console.log("Selected WOrkspace:", selectedWorkspace);
+  // console.log("workspaceId:", client.workspaceId);
 
   const selectedIndustryType = industryTypes?.find(
     (industry) => industry._id === client?.industryTypeId
@@ -296,19 +298,21 @@ export default function CreateUpdateModal({
   // client.industryTypeId = client?.industryTypeId?._id;
   // let SelectedIndustryTypeId = client
 
-  console.log("industryTypeId:", client);
+  // console.log("industryTypeId:", client);
   if (client.industryTypeId && client.industryTypeId._id) {
     client.industryTypeId = client.industryTypeId._id;
   }
 
-  console.log("industryTypeId changed:", client);
-  console.log("Selected Industry:", selectedIndustryType);
+  // console.log("industryTypeId changed:", client);
+  // console.log("Selected Industry:", selectedIndustryType);
 
   // const clientIndustryTypeId = client?.industryTypeId?._id;
   // const selectedIndustryType = industryTypes?.find(industry => industry._id === clientIndustryTypeId);
   // console.log("Selected Industry:", selectedIndustryType);
 
   // console.log("industryTypes : ", industryTypes)
+
+  // console.log("client photo : ", client.photo)
 
   return (
     <Transition
@@ -364,6 +368,7 @@ export default function CreateUpdateModal({
           
               <div className="mt-4 flex justify-center ">
                 <button
+                style={{fontSize: "14px"}}
                   onClick={() => setClient({ ...client, photo: null })}
                   className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 remove-img-btn"
                 >
@@ -399,7 +404,7 @@ export default function CreateUpdateModal({
                             placeholder={"Please Select Industry Type"}
                             options={industryTypes}
                         /> */}
-            <MainSelectLead
+            {/* <MainSelectIndustry
               disabled={loading}
               value={selectedIndustryType}
               onChange={(value) =>
@@ -411,7 +416,22 @@ export default function CreateUpdateModal({
               label={"Industry Type"}
               placeholder={"Please Select Industry Type"}
               options={industryTypes}
+            /> */}
+
+            <MainSelectLead
+              disabled={loading}
+              value={selectedIndustryType || null}
+              onChange={(value) =>
+                setClient({
+                  ...client,
+                  industryTypeId: value?._id || "",
+                })
+              }
+              label={"Industry Type"}
+              placeholder={"Please Select Industry Type"}
+              options={industryTypes}
             />
+
 
             <MainInput
               disabled={loading}
