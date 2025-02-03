@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import AuthenticatedLayout from '../layouts/AuthenticatedLayout'
 import Divider from '@mui/material/Divider';
-import { ChevronUpDownIcon, PlusIcon, ArrowPathIcon, EllipsisVerticalIcon, ArrowUpRightIcon, PencilSquareIcon,TrashIcon } from '@heroicons/react/24/solid'
+import { ChevronUpDownIcon, PlusIcon, ArrowPathIcon, EllipsisVerticalIcon, ArrowUpRightIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
 import TableProvider from '../components/TableProvider'
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
@@ -18,7 +18,7 @@ import ClientCreateUpdateModal from '../components/Authenticated/Client/ClientCr
 
 
 
-export default function Opportunities({ title }) { 
+export default function Opportunities({ title }) {
     document.title = title
 
     const [loading, setLoading] = useState(false)
@@ -46,7 +46,7 @@ export default function Opportunities({ title }) {
     const itemsPerPage = 10;
     const updateTempData = (data) => {
         setTempData(data);
-      };
+    };
 
     useEffect(() => {
         setTimeout(() => {
@@ -234,7 +234,7 @@ export default function Opportunities({ title }) {
                         />
                     </button> */}
                     <button onClick={() => setShowSearch(true)} className='flex justify-center items-center text-white bg-app-gray-5 px-5 py-2 w-full lg:w-fit rounded-lg' >Search</button>
-                    <a href={'/opportunities'} className='flex justify-center items-center text-white bg-app-gray-5 px-5 py-2 w-full lg:w-fit rounded-lg' style={{cursor: 'pointer'}} >See All</a>
+                    <a href={'/opportunities'} className='flex justify-center items-center text-white bg-app-gray-5 px-5 py-2 w-full lg:w-fit rounded-lg' style={{ cursor: 'pointer' }} >See All</a>
                 </div>
                 <button onClick={() => {
                     setShow(true)
@@ -291,11 +291,8 @@ export default function Opportunities({ title }) {
                             <th scope="col" className="py-5 px-6 border-b">
                                 Probability
                             </th>
-                            {/* <th scope="col" className="py-5 px-6 border-b">
-                                Funnel Status
-                            </th> */}
                             <th scope="col" className="py-5 px-6 border-b">
-                            Funnel Status
+                                Funnel Status
                             </th>
                             <th scope="col" className="py-5 px-6 border-b">
                                 Team
@@ -304,7 +301,19 @@ export default function Opportunities({ title }) {
                                 Rate
                             </th>
                             <th scope="col" className="py-5 px-6 border-b">
+                                Workspace
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
                                 Lead
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Client
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Reference Number
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Partners
                             </th>
                             <th scope="col" className="py-5 px-6 border-b">
 
@@ -381,7 +390,16 @@ export default function Opportunities({ title }) {
                                     </td>
 
                                     <td className="py-5 px-6" >{row?.funnelStatusId ? row.funnelStatusId.rate : "-"}</td>
+                                    <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.name : "-"}</td>
                                     <td className="py-5 px-6" >{row?.leadId ? row.leadId.name : "-"}</td>
+                                    <td className="py-5 px-6" >{row?.clientId ? row.clientId.name : "-"}</td>
+                                    <td className="py-5 px-6" >{row?.referenceNumber}</td>
+                                    <td className="py-5 px-6">
+                                        {row?.partners?.length
+                                            ? row.partners.map(partner => partner.name).join(", ")
+                                            : "-"}
+                                    </td>
+
                                     <td>
                                         <button
                                             onClick={() => {
