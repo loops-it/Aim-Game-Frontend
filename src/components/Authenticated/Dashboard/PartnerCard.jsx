@@ -44,7 +44,7 @@ export default function PartnerCard() {
         }, 3000);
     }, [loading])
     return (
-        <div className='bg-white rounded-lg min-h-[25rem]' >
+        <div className='bg-white rounded-lg min-h-[25rem] dashboard-table-container' >
             <div className='flex items-center justify-between h-20 p-5' >
                 <div className='flex items-center gap-5' >
                     <div className="text-lg lg:text-2xl text-app-blue font-semibold" >All Partners</div>
@@ -77,6 +77,15 @@ export default function PartnerCard() {
                 Name
               </th>
               <th scope="col" className="py-5 px-6 border-b">
+                Rate
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Account Name
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Workspace
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
                 Designation
               </th>
               <th scope="col" className="py-5 px-6 border-b">
@@ -91,25 +100,28 @@ export default function PartnerCard() {
                 <tbody>
                     {tempData?.slice(0, 7).map((row, index) => {
                         return (
-                            <tr key={index} className="bg-white border-b text-gray-900 ">
-                            <td className="py-5 px-6">{row?._id}</td>
-                            <td className="py-5 px-6">{row?.date}</td>
-                            <td className="py-5 px-6">{row?.company}</td>
-                            <td className="py-5 px-6">{row?.name}</td>
-                            <td className="py-5 px-6">
-                              {row?.clientId ? row.clientId.designation : "-"}
-                            </td>
-                            <td className="py-5 px-6">
-                              {row?.clientId ? row.clientId.phone : "-"}
-                            </td>
-                            <td className="py-5 px-6">
-                              {row?.clientId ? row.clientId.email : "-"}
-                            </td>
-                            {/* <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.contactEmail : "-"}</td> */}
-                            {/* <td className="py-5 px-6" >{row?.contacts}</td> */}
-          
-                           
-                          </tr>
+                          <tr key={index} className="bg-white border-b text-gray-900 ">
+                          <td className="py-5 px-6">{row?._id}</td>
+                          <td className="py-5 px-6">{row?.date}</td>
+                          <td className="py-5 px-6">{row?.company}</td>
+                          <td className="py-5 px-6">{row?.name}</td>
+                          <td className="py-5 px-6">{row?.rate}</td>
+                          <td className="py-5 px-6">{row?.accountName}</td>
+                          <td className="py-5 px-6">{row?.workspaceId.name}</td>
+                          <td className="py-5 px-6">
+                            {row?.clientId ? row.clientId.designation : "-"}
+                          </td>
+                          <td className="py-5 px-6">
+                            {row?.clientId ? row.clientId.phone : "-"}
+                          </td>
+                          <td className="py-5 px-6">
+                            {row?.clientId ? row.clientId.email : "-"}
+                          </td>
+                          {/* <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.contactEmail : "-"}</td> */}
+                          {/* <td className="py-5 px-6" >{row?.contacts}</td> */}
+        
+                        
+                        </tr>
                         )
                     })}
                 </tbody>

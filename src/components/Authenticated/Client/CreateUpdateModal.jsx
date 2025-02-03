@@ -361,16 +361,16 @@ export default function CreateUpdateModal({
               }}
               value={client?.photo}
             />
-            {client?.photo && (
-              <div className="mt-4 flex justify-center">
+          
+              <div className="mt-4 flex justify-center ">
                 <button
                   onClick={() => setClient({ ...client, photo: null })}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 remove-img-btn"
                 >
                   Remove Image
                 </button>
               </div>
-            )}
+           
           </div>
 
           <div className="grid gap-5 grid-cols-1 lg:grid-cols-2 px-10 pt-10">

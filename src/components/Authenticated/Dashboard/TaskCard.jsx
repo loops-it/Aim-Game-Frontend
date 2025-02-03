@@ -38,7 +38,7 @@ export default function TaskCard() {
         }, 3000);
     }, [loading])
     return (
-        <div className='bg-white rounded-lg min-h-[25rem]' >
+        <div className='bg-white rounded-lg min-h-[25rem] dashboard-table-container' >
             <div className='flex items-center justify-between h-20 p-5' >
                 <div className='flex items-center gap-5' >
                     <div className="text-lg lg:text-2xl text-app-blue font-semibold" >My Open Task</div>

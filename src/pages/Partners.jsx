@@ -74,6 +74,7 @@ export default function Partners({ title }) {
         document.getElementById("page-loader").style.display = "block";
         const response = await api.get("/api-v1/partners");
         setTempData(response.data.data);
+        console.log(response.data.data);
         document.getElementById("page-loader").style.display = "none";
       } catch (error) {
         console.error("Error fetching workspaces:", error);
@@ -293,6 +294,15 @@ export default function Partners({ title }) {
                 Name
               </th>
               <th scope="col" className="py-5 px-6 border-b">
+                Rate
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Account Name
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Workspace
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
                 Designation
               </th>
               <th scope="col" className="py-5 px-6 border-b">
@@ -315,6 +325,9 @@ export default function Partners({ title }) {
                   <td className="py-5 px-6">{row?.date}</td>
                   <td className="py-5 px-6">{row?.company}</td>
                   <td className="py-5 px-6">{row?.name}</td>
+                  <td className="py-5 px-6">{row?.rate}</td>
+                  <td className="py-5 px-6">{row?.accountName}</td>
+                  <td className="py-5 px-6">{row?.workspaceId.name}</td>
                   <td className="py-5 px-6">
                     {row?.clientId ? row.clientId.designation : "-"}
                   </td>

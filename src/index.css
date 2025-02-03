@@ -57,6 +57,18 @@ table th{
     -webkit-animation: sk-scaleout 1s infinite ease-in-out;
     animation: sk-scaleout 1s infinite ease-in-out;
   }
+  .dashboard-table-container .overflow-x-auto{
+    max-height: 500px;
+  }
+  .remove-img-btn {
+    font-size: 14px;
+    /* left: -150px; */
+    width: -moz-max-content;
+    width: max-content;
+    position: relative;
+    left: -150px;
+    top: 12px;
+}
   @-webkit-keyframes sk-scaleout {
     0% {
       -webkit-transform: scale(0);

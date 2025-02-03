@@ -287,16 +287,19 @@ export default function CreateUpdateModal({ show, onClose, data }) {
               }}
               value={team?.image}
             />
-            {team?.image && (
+           
               <div className="mt-4 flex justify-center">
                 <button
                   onClick={() => setTeam({ ...team, image: null })}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 remove-img-btn"
                 >
                   Remove Image
                 </button>
               </div>
-            )}
+    
+          </div>
+          <div className="grid gap-5 grid-cols-1 lg:grid-cols-2 px-10 pt-10">
+            
           </div>
           <div className="grid gap-5 grid-cols-1 lg:grid-cols-2 px-10 pt-10">
             <MainInput
