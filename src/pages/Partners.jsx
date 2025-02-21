@@ -16,7 +16,7 @@ import api from "../services/api";
 import MainSelectNoId from "../components/MainSelectNoId";
 
 export default function Partners({ title }) {
-  document.title = title; 
+  document.title = title;
 
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -67,35 +67,35 @@ export default function Partners({ title }) {
 
   useEffect(() => {
     fetchPartners();
-      }, []);
-  
-    const fetchPartners = async () => {
+  }, []);
+
+  const fetchPartners = async () => {
+    try {
+      document.getElementById("page-loader").style.display = "block";
+      const response = await api.get("/api-v1/partners");
+      setTempData(response.data.data);
+      console.log(response.data.data);
+      document.getElementById("page-loader").style.display = "none";
+    } catch (error) {
+      console.error("Error fetching workspaces:", error);
+      document.getElementById("page-loader").style.display = "none";
+    }
+  };
+
+
+
+  useEffect(() => {
+    const fetchClients = async () => {
       try {
-        document.getElementById("page-loader").style.display = "block";
-        const response = await api.get("/api-v1/partners");
-        setTempData(response.data.data);
-        console.log(response.data.data);
-        document.getElementById("page-loader").style.display = "none";
+        const response = await api.get('/api-v1/clients');
+        setClients(response.data.data);
       } catch (error) {
-        console.error("Error fetching workspaces:", error);
-        document.getElementById("page-loader").style.display = "none";
+        console.error('Error fetching workspaces:', error);
       }
     };
 
-    
-
-        useEffect(() => {
-          const fetchClients = async () => {
-            try {
-                const response = await api.get('/api-v1/clients');
-                setClients(response.data.data);
-            } catch (error) {
-                console.error('Error fetching workspaces:', error);
-            }
-        };
-      
-        fetchClients();
-        }, []);
+    fetchClients();
+  }, []);
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
@@ -123,6 +123,8 @@ export default function Partners({ title }) {
 
     fetchCompanies();
   }, []);
+
+  console.log("tempData : ", tempData)
 
   const paginatedData = tempData.slice(
     (currentPage - 1) * itemsPerPage,
@@ -198,7 +200,7 @@ export default function Partners({ title }) {
           onClick={() => {
             setShow(true);
             setSelectedData(null);
-         
+
           }}
           className="flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white"
         >
@@ -268,12 +270,12 @@ export default function Partners({ title }) {
             <div className="text-lg lg:text-2xl text-app-blue font-semibold">
               All Partners
             </div>
-            <button 
-            
-            onClick={() => {
-              setLoading(true);
-              fetchPartners();
-             }}
+            <button
+
+              onClick={() => {
+                setLoading(true);
+                fetchPartners();
+              }}
             >
               <ArrowPathIcon
                 className={`${loading ? "animate-spin" : ""} w-6 h-6`}
@@ -326,7 +328,21 @@ export default function Partners({ title }) {
               <th scope="col" className="py-5 px-6 border-b">
                 Email
               </th>
-
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Name
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Email
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Contact No.
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Designation
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Business
+              </th>
               <th scope="col" className="py-5 px-6 border-b">
                 Actions
               </th>
@@ -334,6 +350,7 @@ export default function Partners({ title }) {
           </thead>
           <tbody>
             {paginatedData?.map((row, index) => {
+              const firstContact = row?.contacts?.length > 0 ? row.contacts[0] : null;
               return (
                 <tr key={index} className="bg-white border-b text-gray-900 ">
                   <td className="py-5 px-6">{row?._id}</td>
@@ -352,6 +369,23 @@ export default function Partners({ title }) {
                   <td className="py-5 px-6">
                     {row?.clientId ? row.clientId.email : "-"}
                   </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.name : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.email : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.phone : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.designation : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.business : "-"}
+                  </td>
+
+
                   {/* <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.contactEmail : "-"}</td> */}
                   {/* <td className="py-5 px-6" >{row?.contacts}</td> */}
 
