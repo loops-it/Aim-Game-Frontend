@@ -124,7 +124,7 @@ export default function Partners({ title }) {
     fetchCompanies();
   }, []);
 
-  console.log("tempData : ", tempData)
+  // console.log("tempData : ", tempData)
 
   const paginatedData = tempData.slice(
     (currentPage - 1) * itemsPerPage,
