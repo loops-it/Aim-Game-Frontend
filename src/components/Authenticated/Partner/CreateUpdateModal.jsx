@@ -123,7 +123,7 @@ export default function CreateUpdateModal({
     setSuccess(null);
     setLoading(true);
 
-    console.log("Partner data:", partner);
+    console.log("clientsData data:", clientsData);
 
     // Check if partner name already exists
     const nameExists = userData.some((item) => item.name === partner.name);
@@ -200,13 +200,25 @@ export default function CreateUpdateModal({
     onClose();
   }
 
-  const selectedWorkspace = workspaces?.find(
-    (workspace) => workspace._id === partner?.workspaceId?._id
-  );
+  // const selectedWorkspace = workspaces?.find(
+  //   (workspace) => workspace._id === partner?.workspaceId?._id
+  // );
+  console.log("clientsData : ", clientsData)
+  console.log("workspaces : ", workspaces)
+ 
+  // const selectedClient = clientsData?.find(
+  //   (client) => client._id === partner?.clientId
+  // );
   const selectedClient = clientsData?.find(
     (client) => client._id === partner?.clientId
   );
-  console.log("selectedWorkspace :", selectedWorkspace);
+  // console.log("selectedClient :", selectedClient);
+
+  const selectedWorkspace = workspaces?.find(
+    (workspace) => workspace._id === partner?.workspaceId
+  );
+  // console.log("selectedWorkspace :", selectedWorkspace);
+  // console.log("partner :", partner);
 
   return (
     <Transition
@@ -272,10 +284,10 @@ export default function CreateUpdateModal({
 
             <MainSelect
               disabled={loading}
-              value={workspaces?.find(
-                (row) => row?._id === partner?.workspaceId?._id
-              )}
-              // value={selectedWorkspace || ""}
+              // value={workspaces?.find(
+              //   (row) => row?._id === partner?.workspaceId?._id
+              // )}
+              value={selectedWorkspace || ""}
               onChange={(value) =>
                 setPartner({
                   ...partner,

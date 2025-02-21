@@ -455,8 +455,9 @@ export default function Opportunities({ title }) {
 
             <PartnerCreateModal
                 data={null}
+                clientsData={clients}
                 allworkspaces={allworkspaces}
-                worspaces={workspaces}
+                workspaces={workspaces}
                 show={partnerCreateModalShow}
                 onClose={() => setPartnerCreateModalShow(false)}
             />
