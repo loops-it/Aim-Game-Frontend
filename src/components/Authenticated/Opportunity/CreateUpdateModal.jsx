@@ -476,7 +476,7 @@ export default function CreateUpdateModal({
               placeholder={"Please Select Opportunity Lead"}
               options={leadData ?? []}
             />
-            <MainInput
+             {/*<MainInput
               disabled={true}
               value={
                 leadData.find((lead) => lead._id === opportunity?.leadId)
@@ -484,7 +484,7 @@ export default function CreateUpdateModal({
               }
               label={"Designation"}
               placeholder={"Please Select Designation"}
-            />
+            />*/}
 
             <MainSelectFunnelStatus
               disabled={loading}
