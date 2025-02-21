@@ -212,13 +212,13 @@ export default function CreateUpdateModal({
   const selectedClient = clientsData?.find(
     (client) => client._id === partner?.clientId
   );
-  // console.log("selectedClient :", selectedClient);
+  console.log("selectedClient :", selectedClient);
 
   const selectedWorkspace = workspaces?.find(
     (workspace) => workspace._id === partner?.workspaceId
   );
   // console.log("selectedWorkspace :", selectedWorkspace);
-  // console.log("partner :", partner);
+  console.log("partner :", partner);
 
   return (
     <Transition

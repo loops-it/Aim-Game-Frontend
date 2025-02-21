@@ -82,6 +82,21 @@ export default function Partners({ title }) {
       }
     };
 
+    
+
+        useEffect(() => {
+          const fetchClients = async () => {
+            try {
+                const response = await api.get('/api-v1/clients');
+                setClients(response.data.data);
+            } catch (error) {
+                console.error('Error fetching workspaces:', error);
+            }
+        };
+      
+        fetchClients();
+        }, []);
+
   useEffect(() => {
     const fetchWorkspaces = async () => {
       try {
@@ -359,6 +374,7 @@ export default function Partners({ title }) {
       <CreateUpdateModal
         data={selectedData}
         workspaces={workspaces}
+        clientsData={clients}
         show={show}
         onClose={() => setShow(false)}
       />
