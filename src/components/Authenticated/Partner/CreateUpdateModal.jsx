@@ -90,6 +90,7 @@ export default function CreateUpdateModal({
             email: "",
             phone: "",
             business: "",
+            workspaceId: ""
             // isPrimary: prevState.contacts.length === 0, 
           },
         ],
@@ -123,7 +124,7 @@ export default function CreateUpdateModal({
     setSuccess(null);
     setLoading(true);
 
-    console.log("clientsData data:", clientsData);
+    // console.log("clientsData data:", clientsData);
 
     // Check if partner name already exists
     const nameExists = userData.some((item) => item.name === partner.name);
@@ -194,31 +195,79 @@ export default function CreateUpdateModal({
     }
   }
 
+  // async function onUpdate() {
+  //   // Logic for updating the partner (if needed)
+  //   console.log("Updating partner:", partner);
+  //   onClose();
+  // }
+
   async function onUpdate() {
-    // Logic for updating the partner (if needed)
-    console.log("Updating partner:", partner);
-    onClose();
+    setError(null);
+    setSuccess(null);
+    setLoading(true);
+  
+    if (!partner._id) {
+      setError("Partner ID is missing");
+      setLoading(false);
+      return;
+    }
+  
+    try {
+      document.getElementById("page-loader").style.display = "block";
+  
+      const response = await api.put(`/api-v1/partners/${partner._id}`, partner);
+  
+      if (response.status === 200) {
+        console.log("Partner updated successfully");
+        setSuccess("Partner updated successfully");
+        document.getElementById("page-loader").style.display = "none";
+        onClose();
+      } else {
+        console.error("Failed to update partner:", response.statusText);
+        setError("Failed to update partner");
+        document.getElementById("page-loader").style.display = "none";
+      }
+    } catch (error) {
+      console.error("Error updating partner:", error);
+      setError("Failed to update partner");
+      document.getElementById("page-loader").style.display = "none";
+    } finally {
+      setLoading(false);
+    }
   }
+  
 
   // const selectedWorkspace = workspaces?.find(
   //   (workspace) => workspace._id === partner?.workspaceId?._id
   // );
   // console.log("clientsData : ", clientsData)
   // console.log("workspaces : ", workspaces)
- 
+
+  // const selectedClient = clientsData?.find(
+  //   (client) => client._id === partner?.clientId
+  // );
+
+
+  // this code is last working
   // const selectedClient = clientsData?.find(
   //   (client) => client._id === partner?.clientId
   // );
   const selectedClient = clientsData?.find(
-    (client) => client._id === partner?.clientId
+    (client) => client._id === partner?.clientId?._id
   );
+  
   // console.log("selectedClient :", selectedClient);
 
+  // this code is last working
+  // const selectedWorkspace = workspaces?.find(
+  //   (workspace) => workspace._id === partner?.workspaceId
+  // );
   const selectedWorkspace = workspaces?.find(
-    (workspace) => workspace._id === partner?.workspaceId
+    (workspace) => workspace._id === partner?.workspaceId?._id
   );
-  // console.log("selectedWorkspace :", selectedWorkspace);
-  // console.log("partner :", partner);
+
+  console.log("selectedWorkspace :", selectedWorkspace);
+  console.log("partner :", partner);
 
   return (
     <Transition
@@ -282,7 +331,7 @@ export default function CreateUpdateModal({
               placeholder={"Enter Account Name"}
             />
 
-            <MainSelect
+            {/* <MainSelect
               disabled={loading}
               // value={workspaces?.find(
               //   (row) => row?._id === partner?.workspaceId?._id
@@ -297,8 +346,22 @@ export default function CreateUpdateModal({
               label={"Workspaces"}
               placeholder={"Please Select workspaces"}
               options={workspaces ?? []}
+            /> */}
+            <MainSelect
+              disabled={loading}
+              value={selectedWorkspace || ""} 
+              onChange={(value) =>
+                setPartner({
+                  ...partner,
+                  workspaceId: { _id: value?._id, name: value?.name }, 
+                })
+              }
+              label={"Workspaces"}
+              placeholder={"Please Select workspaces"}
+              options={workspaces ?? []}
             />
-            <MainSelectLead
+
+            {/* <MainSelectLead
               disabled={loading}
               value={selectedClient || ""}
               onChange={(value) =>
@@ -310,7 +373,20 @@ export default function CreateUpdateModal({
               label={"Clients"}
               placeholder={"Please Select Client"}
               options={clientsData ?? []}
-            />
+            /> */}
+<MainSelectLead
+  disabled={loading}
+  value={selectedClient || ""} 
+  onChange={(value) =>
+    setPartner({
+      ...partner,
+      clientId: { _id: value?._id, name: value?.name }, 
+    })
+  }
+  label={"Clients"}
+  placeholder={"Please Select Client"}
+  options={clientsData ?? []}
+/>
 
 
             <MainSelect
@@ -410,7 +486,7 @@ export default function CreateUpdateModal({
               Cancel
             </button>
             <button
-              onClick={onCreate}
+               onClick={partner._id ? onUpdate : onCreate}
               disabled={loading}
               className="disabled:bg-app-gray flex items-center gap-3 bg-app-blue-2 rounded-lg w-fit px-10 py-2 text-white"
             >
