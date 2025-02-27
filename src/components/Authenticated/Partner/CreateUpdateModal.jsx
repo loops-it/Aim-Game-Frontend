@@ -22,6 +22,7 @@ const initialState = {
   accountName: "",
   rate: "",
   workspaceId: "",
+  clientId: "",
   industryTypeId: null,
   photo: null,
   contacts: [
@@ -90,7 +91,8 @@ export default function CreateUpdateModal({
             email: "",
             phone: "",
             business: "",
-            workspaceId: ""
+            workspaceId: "",
+            clientId: ""
             // isPrimary: prevState.contacts.length === 0, 
           },
         ],
@@ -174,7 +176,13 @@ export default function CreateUpdateModal({
 
     try {
       document.getElementById("page-loader").style.display = "block";
-      const response = await api.post("/api-v1/partners", partner);
+      const updatedPartner = {
+        ...partner,
+        workspaceId: partner.workspaceId?._id || "",
+        clientId: partner.clientId?._id || "", 
+      };
+      console.log("AAAAA create : ", updatedPartner)
+      const response = await api.post("/api-v1/partners", updatedPartner);
 
       if (response.status === 201) {
         console.log("Partner created successfully");
@@ -214,8 +222,17 @@ export default function CreateUpdateModal({
   
     try {
       document.getElementById("page-loader").style.display = "block";
-  
-      const response = await api.put(`/api-v1/partners/${partner._id}`, partner);
+      const updatedPartner = {
+        ...partner,
+        workspaceId: partner.workspaceId?._id || "",
+        clientId: partner.clientId?._id || "", 
+        contacts: partner.contacts.map(({ _id, ...rest }) => rest),
+      };
+      
+      console.log("AAAAA : ", updatedPartner)
+      const response = await api.put(`/api-v1/partners/${partner._id}`, updatedPartner);
+      
+      // const response = await api.put(`/api-v1/partners/${partner._id}`, partner);
   
       if (response.status === 200) {
         console.log("Partner updated successfully");
@@ -266,7 +283,7 @@ export default function CreateUpdateModal({
     (workspace) => workspace._id === partner?.workspaceId?._id
   );
 
-  console.log("selectedWorkspace :", selectedWorkspace);
+  console.log("selectedWorkspace ------ :", selectedWorkspace);
   console.log("partner :", partner);
 
   return (
