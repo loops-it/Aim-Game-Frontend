@@ -234,7 +234,7 @@ export default function CreateUpdateModal({
       
       // const response = await api.put(`/api-v1/partners/${partner._id}`, partner);
   
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         console.log("Partner updated successfully");
         setSuccess("Partner updated successfully");
         document.getElementById("page-loader").style.display = "none";
