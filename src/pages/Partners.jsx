@@ -14,6 +14,7 @@ import MainSelect from "../components/MainSelect";
 import CreateUpdateModal from "../components/Authenticated/Partner/CreateUpdateModal";
 import api from "../services/api";
 import MainSelectNoId from "../components/MainSelectNoId";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Partners({ title }) {
   document.title = title;
@@ -171,6 +172,15 @@ export default function Partners({ title }) {
       console.error("Error:", error);
     }
   };
+
+  const deletePartners = async (id) => {
+          try {
+              const response = await api.delete(`/api-v1/partners/${id}`);
+              fetchPartners();
+          } catch (error) {
+              console.error('Error fetching workspaces:', error);
+          }
+      };
 
   return (
     <AuthenticatedLayout>
@@ -389,7 +399,7 @@ export default function Partners({ title }) {
                   {/* <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.contactEmail : "-"}</td> */}
                   {/* <td className="py-5 px-6" >{row?.contacts}</td> */}
 
-                  <td>
+                  <td className="py-5 px-6" style={{    display: "flex", justifyContent: "center", alignItems: "center"}}>
                     <button
                       onClick={() => {
                         setShow(true);
@@ -397,6 +407,13 @@ export default function Partners({ title }) {
                       }}
                     >
                       <PencilSquareIcon className="w-6 h-6 text-app-blue-2" />
+                    </button>
+                    <button
+                    onClick={() => {
+                      deletePartners(row?._id)
+                    }}
+                    >
+                      <TrashIcon className='w-6 h-6 text-app-blue-2' />
                     </button>
                   </td>
                 </tr>
