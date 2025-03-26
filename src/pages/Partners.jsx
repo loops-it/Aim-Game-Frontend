@@ -348,7 +348,7 @@ export default function Partners({ title }) {
                 Contact Person&apos;s Contact No.
               </th>
               <th scope="col" className="py-5 px-6 border-b">
-                Contact Person&apos;s Designation
+                Contact Person&apos;s Designation 
               </th>
               <th scope="col" className="py-5 px-6 border-b">
                 Contact Person&apos;s Business

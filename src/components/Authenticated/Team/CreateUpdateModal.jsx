@@ -16,9 +16,9 @@ const designations = [
   { name: "Presales" },
 ];
 const userRoles = [
-  { name: "editor" },
-  { name: "sales" },
-  { name: "admin" },
+  // { name: "editor" },
+  // { name: "sales" },
+  // { name: "admin" },
   { name: "team member" },
 ];
 const initialState = {
@@ -125,11 +125,13 @@ export default function CreateUpdateModal({ show, onClose, data }) {
         setSuccess(null);
       }
     } catch (error) {
+      setLoading(false);
+            
+      setSuccess(null);
       console.error("Error creating client:", error);
       document.getElementById("page-loader").style.display = "none";
-      setError(error.message);
-      setLoading(false);
-      setSuccess(null);
+      setError(error);
+
     }
     setLoading(false);
   }

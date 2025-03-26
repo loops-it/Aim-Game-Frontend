@@ -94,14 +94,29 @@ export default function PartnerCard() {
               <th scope="col" className="py-5 px-6 border-b">
                 Email
               </th>
-
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Name
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Email
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Contact No.
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Designation
+              </th>
+              <th scope="col" className="py-5 px-6 border-b">
+                Contact Person&apos;s Business
+              </th>
             </tr>
                 </thead>
                 <tbody>
                     {tempData?.slice(0, 7).map((row, index) => {
+                        const firstContact = row?.contacts?.length > 0 ? row.contacts[0] : null;
                         return (
                           <tr key={index} className="bg-white border-b text-gray-900 ">
-                          <td className="py-5 px-6">{row?._id}</td>
+                          <td className="py-5 px-6">{row?._id}</td> 
                           <td className="py-5 px-6">{row?.date}</td>
                           <td className="py-5 px-6">{row?.company}</td>
                           <td className="py-5 px-6">{row?.name}</td>
@@ -120,7 +135,21 @@ export default function PartnerCard() {
                           {/* <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.contactEmail : "-"}</td> */}
                           {/* <td className="py-5 px-6" >{row?.contacts}</td> */}
         
-                        
+                          <td className="py-5 px-6">
+                    {firstContact ? firstContact.name : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.email : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.phone : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.designation : "-"}
+                  </td>
+                  <td className="py-5 px-6">
+                    {firstContact ? firstContact.business : "-"}
+                  </td>
                         </tr>
                         )
                     })}

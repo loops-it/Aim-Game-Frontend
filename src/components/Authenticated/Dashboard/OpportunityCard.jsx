@@ -115,7 +115,16 @@ export default function OpportunityCard() {
                             <th scope="col" className="py-5 px-6 border-b">
                                 Lead
                             </th>
-                           
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Client
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Reference Number
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
+                                Partners
+                            </th>
+                          
                         </tr>
                 </thead>
                 <tbody>
@@ -186,7 +195,13 @@ export default function OpportunityCard() {
 
                             <td className="py-5 px-6" >{row?.funnelStatusId ? row.funnelStatusId.rate : "-"}</td>
                             <td className="py-5 px-6" >{row?.leadId ? row.leadId.name : "-"}</td>
-                           
+                            <td className="py-5 px-6" >{row?.clientId ? row.clientId.name : "-"}</td>
+                                    <td className="py-5 px-6" >{row?.referenceNumber}</td>
+                                    <td className="py-5 px-6">
+                                        {row?.partners?.length
+                                            ? row.partners.map(partner => partner.name).join(", ")
+                                            : "-"}
+                                    </td>
                         </tr>
                         )
                     })}

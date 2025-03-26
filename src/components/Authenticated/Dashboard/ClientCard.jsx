@@ -119,7 +119,7 @@ export default function ClientCard() {
                                             src={row?.photo}
                                             sx={{ border: "0.5px solid #ABB3BB" }}
                                             />
-                                            <div>{row?.name}</div>
+                                           
                                         </div>
                                         </Link>
                                     </td>
