@@ -67,6 +67,7 @@ export default function CreateUpdateModal({ show, onClose, data }) {
     if (!emailRegex.test(team.email)) {
       setError("Invalid email format");
       setLoading(false);
+      setSuccess(null);
       return;
     }
 
@@ -76,6 +77,7 @@ export default function CreateUpdateModal({ show, onClose, data }) {
     if (!nameRegex.test(team.name.trim() || team.name.trim() === "")) {
       setError("Invalid name format");
       setLoading(false);
+      setSuccess(null);
       return;
     }
 
@@ -88,9 +90,19 @@ export default function CreateUpdateModal({ show, onClose, data }) {
         "Invalid phone number format. It should start with 0 and have 10 digits."
       );
       setLoading(false);
+      setSuccess(null);
       return;
     }
-
+    if (team.designation === null || team.designation === "") {
+      setError("Designation is required.");
+      setLoading(false);
+      setSuccess(null);
+    }
+    if (team.userRole === null || team.userRole === "") {
+      setError("Role is required.");
+      setLoading(false);
+      setSuccess(null);
+    } 
     try {
       document.getElementById("page-loader").style.display = "block";
       const response = await api.post("/api-v1/team-members", team); 
