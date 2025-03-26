@@ -24,6 +24,11 @@ const userRoles = [
 const initialState = {
   //industryType: null,
   image: null,
+  name: "",
+  email: "",
+  phone: "",
+  designation: "",
+  userRole: ""
 };
 
 export default function CreateUpdateModal({ show, onClose, data }) {
