@@ -19,6 +19,7 @@ export default function Teams({ title }) {
     const [selectedData, setSelectedData] = useState(null)
     const [tempData, setTempData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [modalType, setmodalType] = useState('team-member');
     const itemsPerPage = 10;
     const updateTempData = (data) => {
         setTempData(data);
@@ -62,8 +63,9 @@ export default function Teams({ title }) {
                 </div>
  
                 <button onClick={() => {
-                    setShow(true) 
-                    setSelectedData(null)
+                    setShow(true) ;
+                    setSelectedData(null);
+                    setmodalType('team-member');
                 }} className='flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white' >
                     <PlusIcon className='w-6 h-6 text-white' />
                     <div>Create Team Member</div>
@@ -160,6 +162,7 @@ export default function Teams({ title }) {
                 data={selectedData}
                 show={show}
                 onClose={() => setShow(false)}
+                type={modalType}
             />
 
             <SearchModal

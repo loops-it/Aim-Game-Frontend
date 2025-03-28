@@ -20,6 +20,7 @@ export default function Teams({ title }) {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
+  const [modalType, setmodalType] = useState('presale');
   const [tempData, setTempData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -64,6 +65,7 @@ export default function Teams({ title }) {
           onClick={() => {
             setShow(true);
             setSelectedData(null);
+            setmodalType('presale');
           }}
           className="flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white"
         >
@@ -165,6 +167,7 @@ export default function Teams({ title }) {
         data={selectedData}
         show={show}
         onClose={() => setShow(false)}
+        type={modalType}
       />
     </AuthenticatedLayout>
   );

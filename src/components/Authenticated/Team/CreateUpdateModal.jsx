@@ -15,12 +15,7 @@ const designations = [
   { name: "Chief Executive officer" },
   { name: "Presales" },
 ];
-const userRoles = [
-  // { name: "editor" },
-  { name: "presales" },
-  // { name: "admin" },
-  { name: "team member" },
-];
+
 const initialState = {
   //industryType: null,
   image: null,
@@ -30,13 +25,28 @@ const initialState = {
   designation: "",
   userRole: ""
 };
+const userRoles = [
+  // { name: "editor" },
+  { name: "presales" },
+  // { name: "admin" },
+  { name: "team member" },
+];
 
-export default function CreateUpdateModal({ show, onClose, data }) {
+export default function CreateUpdateModal({ show, onClose, data, type }) {
   const [team, setTeam] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
+  const filteredRoles = userRoles.filter(role => {
+    if (type === 'presale') {
+      return role.name === 'presales';
+    } else if (type === 'team-member') {
+      return role.name === 'team member';
+    }
+    return false; 
+  });
+ 
   useEffect(() => {
     if (data) {
       setTeam(data);
@@ -363,7 +373,7 @@ export default function CreateUpdateModal({ show, onClose, data }) {
               onChange={(value) => setTeam({ ...team, userRole: value?.name })}
               label={"User Role"}
               placeholder={"Please Select User Role"}
-              options={userRoles}
+              options={filteredRoles}
             />
             <MainInput
               disabled={loading}
