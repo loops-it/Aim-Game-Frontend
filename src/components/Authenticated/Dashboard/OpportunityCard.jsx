@@ -113,6 +113,9 @@ export default function OpportunityCard() {
                                 Rate
                             </th>
                             <th scope="col" className="py-5 px-6 border-b">
+                                Workspace
+                            </th>
+                            <th scope="col" className="py-5 px-6 border-b">
                                 Lead
                             </th>
                             <th scope="col" className="py-5 px-6 border-b">
@@ -194,6 +197,7 @@ export default function OpportunityCard() {
                             </td>
 
                             <td className="py-5 px-6" >{row?.funnelStatusId ? row.funnelStatusId.rate : "-"}</td>
+                            <td className="py-5 px-6" >{row?.workspaceId ? row.workspaceId.name : "-"}</td>
                             <td className="py-5 px-6" >{row?.leadId ? row.leadId.name : "-"}</td>
                             <td className="py-5 px-6" >{row?.clientId ? row.clientId.name : "-"}</td>
                                     <td className="py-5 px-6" >{row?.referenceNumber}</td>
