@@ -17,7 +17,7 @@ const designations = [
 ];
 const userRoles = [
   // { name: "editor" },
-  // { name: "sales" },
+  { name: "presales" },
   // { name: "admin" },
   { name: "team member" },
 ];

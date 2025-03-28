@@ -128,7 +128,7 @@ export default function Teams({ title }) {
           </thead>
           <tbody>
             {paginatedData?.map((row, index) => {
-              if (row?.designation == "Presales") {
+              // if (row?.designation == "Presales") {
                 return (
                   <tr key={index} className="bg-white border-b text-gray-900 ">
                     <td className="py-5 px-6">{row?._id}</td>
@@ -156,7 +156,7 @@ export default function Teams({ title }) {
                     </td>
                   </tr>
                 );
-              }
+              // }
             })}
           </tbody>
         </TableProvider>
