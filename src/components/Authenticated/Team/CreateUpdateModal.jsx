@@ -288,7 +288,7 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
                 <span className="text-app-blue-4">{data?.name}</span>
               </span>
             ) : (
-              "Create Team Member"
+              "Create New Team Member"
             )}
           </div>
           <button

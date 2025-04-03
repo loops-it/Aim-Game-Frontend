@@ -57,13 +57,13 @@ export default function ClientCard() {
             <div className='flex items-center justify-between h-20 p-5' >
                 <div className='flex items-center gap-5' >
                     <div className="text-lg lg:text-2xl text-app-blue font-semibold" >All Clients</div>
-                    <button
+                    {/* <button
                         onClick={() => {
                             setLoading(true)
                         }}
                     >
                         <ArrowPathIcon className={`${loading ? "animate-spin" : ""} w-6 h-6`} />
-                    </button>
+                    </button> */}
                 </div>
                 {/* <button>
                     <EllipsisVerticalIcon className='w-8 h-8' />

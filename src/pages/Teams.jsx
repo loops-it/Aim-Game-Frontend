@@ -68,7 +68,7 @@ export default function Teams({ title }) {
                     setmodalType('team-member');
                 }} className='flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white' >
                     <PlusIcon className='w-6 h-6 text-white' />
-                    <div>Create Team Member</div>
+                    <div>Create New Team Member</div>
                 </button>
             </div>
             <div className='bg-white rounded-lg mt-10' >

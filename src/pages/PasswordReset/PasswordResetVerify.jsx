@@ -73,13 +73,15 @@ export default function PasswordResetVerify({title}) {
             if (!response.ok) {
                 const errorData = await response.json();
                 setError(errorData.errors);
+                setSuccess("");
             } else {
-                
+                setError('');
                 setSuccess("OTP has been resent");
             }
         } catch (error) {
             console.error('Error occurred:', error);
             setError(error.message);
+            setSuccess("");
         }
     }; 
     return (

@@ -75,7 +75,7 @@ export default function CreateUpdateModal({
     fetchWorkspaces();
   }, []);
 
-  const addContact = () => {
+  const addContact = () => { 
     setPartner((prevState) => {
       if (prevState.contacts.length >= 2) {
         alert("You can only add up to 2 contact persons.");
@@ -295,7 +295,9 @@ export default function CreateUpdateModal({
       leave="transition-opacity duration-150"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
-      className="w-screen h-screen absolute top-0 left-0 flex items-center justify-center bg-[#0000006d]"
+      className={
+        "w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-[#0000006d]"
+      }
     >
       <div className="bg-white shadow-lg rounded-md h-[90%] lg:h-fit w-[95%] lg:w-[70%]">
         <div className="bg-[#C5C5C533] h-14 flex justify-between items-center px-10">

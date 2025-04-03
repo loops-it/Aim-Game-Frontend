@@ -59,7 +59,7 @@ export default function Events({ title }) {
             <div className='bg-white rounded-lg mt-10' >
                 <div className='flex items-center justify-between h-20 p-5' >
                     <div className='flex items-center gap-5' >
-                        <div className="text-lg lg:text-2xl text-app-blue font-semibold" >Workspaces</div>
+                        <div className="text-lg lg:text-2xl text-app-blue font-semibold" >All Workspaces</div>
                         <button
                            onClick={() => {
                             setLoading(true);

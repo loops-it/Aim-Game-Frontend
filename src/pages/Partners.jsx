@@ -69,7 +69,17 @@ export default function Partners({ title }) {
   useEffect(() => {
     fetchPartners();
   }, []);
-
+  const clearFillters = async () => {
+    try {
+      setFilterValues({
+        workspace: null,
+        company: null,
+      });
+    } catch (error) {
+      console.error("Error clearing filters:", error);
+    }
+  };
+  
   const fetchPartners = async () => {
     try {
       document.getElementById("page-loader").style.display = "block";
@@ -208,6 +218,7 @@ export default function Partners({ title }) {
         </div>
         <button
           onClick={() => {
+           
             setShow(true);
             setSelectedData(null);
 
@@ -268,7 +279,7 @@ export default function Partners({ title }) {
           />
           <button
             onClick={handleFilterClick}
-            className="flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white"
+            className="flex justify-center items-center text-white bg-app-gray-5 px-5 py-2 w-full lg:w-fit rounded-lg"
           >
             <div>Filter</div>
           </button>
@@ -285,6 +296,7 @@ export default function Partners({ title }) {
               onClick={() => {
                 setLoading(true);
                 fetchPartners();
+                clearFillters();
               }}
             >
               <ArrowPathIcon

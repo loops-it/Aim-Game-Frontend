@@ -27,7 +27,7 @@ import Opportunities from "./pages/Opportunities";
 import Clients from "./pages/Clients";
 import Partners from "./pages/Partners";
 import Events from "./pages/Events";
-import Tasks from "./pages/Tasks";
+import Tasks from "./pages/Tasks"; 
 import Workspaces from "./pages/Workspaces";
 import Teams from "./pages/Teams";
 import ClientOpportunities from "./pages/ClientOpportunities";

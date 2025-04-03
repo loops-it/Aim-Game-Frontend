@@ -41,13 +41,22 @@ export default function NavigationHeader() {
                     })}
                 </div>
             </div>
-            <div className='hidden lg:flex items-center gap-5'>
-                <a onClick={handleLogout} href="#">
-                    <img src='/icons/turn-off.png' className='h-5' alt="Turn Off" />
-                </a>
-                {/* <HeaderNotification /> */}
-                <HeaderUser />
-            </div>
+            <div className='hidden lg:flex items-center gap-5'>                 
+    <a 
+        href="#" 
+        onClick={(e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            if (window.confirm("Are you sure you want to log out?")) {
+                handleLogout();
+            }
+        }}
+    >                     
+        <img src='/icons/turn-off.png' className='h-5' alt="Turn Off" />                 
+    </a>                 
+    {/* <HeaderNotification /> */}                 
+    <HeaderUser />             
+</div>
+
         </div>
     );
 }

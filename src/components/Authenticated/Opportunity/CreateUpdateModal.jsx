@@ -429,7 +429,7 @@ export default function CreateUpdateModal({
             {data ? (
               <span>
                 View Opportunity -{" "}
-                <span className="text-app-blue-4">{data?.opportunityName}</span>
+                <span className="text-app-blue-4">{opportunity?.name}</span>
               </span>
             ) : (
               "Create New Opportunity"

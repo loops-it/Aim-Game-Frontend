@@ -22,6 +22,32 @@ export default function Register({ title }) {
       const confirm_password = e.target.confirm_password.value;
       const userRole = "admin";
 
+        //checking name format
+
+      if (name.trim() === "") {
+        setError("Name field is required");
+        return;
+      }
+      const nameRegex = /^[a-zA-Z\s]+$/;
+        if (!nameRegex.test(name)) {
+          setError("Invalid name format");
+          return;
+        }
+      
+        
+      if (email.trim() === "") {
+        setError("Email field is required");
+        return;
+      }
+      //checking email format
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!emailRegex.test(email)) {
+        setError("Invalid email format");
+        return;
+      }
+
+    
       // Password validation regex
       const passwordRegex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
@@ -39,22 +65,7 @@ export default function Register({ title }) {
         );
         return;
       }
-
-      //checking email format
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-      if (!emailRegex.test(email)) {
-        setError("Invalid email format");
-        return;
-      }
-
-      //checking name format
-
-      const nameRegex = /^[a-zA-Z\s]+$/;
-      if (!nameRegex.test(name)) {
-        setError("Invalid name format");
-        return;
-      }
+      
 
       console.log(JSON.stringify({ name, email, password, userRole }));
       document.getElementById("page-loader").style.display = "block";

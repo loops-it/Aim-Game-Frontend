@@ -410,12 +410,15 @@ export default function Opportunities({ title }) {
                                             <PencilSquareIcon className='w-6 h-6 text-app-blue-2' />
                                         </button>
                                         <button
-                                            onClick={() => {
-                                                deleteOpertunity(row?._id)
-                                            }}
+                                        onClick={() => {
+                                            if (window.confirm("Are you sure you want to delete this opportunity?")) {
+                                            deleteOpertunity(row?._id);
+                                            }
+                                        }}
                                         >
-                                            <TrashIcon className='w-6 h-6 text-app-blue-2' />
+                                        <TrashIcon className="w-6 h-6 text-app-blue-2" />
                                         </button>
+
                                     </td>
                                 </tr>
                             )

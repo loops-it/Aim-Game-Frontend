@@ -127,7 +127,7 @@ export default function CreateUpdateModal({
         setSuccess("Client created successfully");
         setError(null);
         setLoading(false);
-        onClose();
+        // onClose();
 
       }
     } catch (error) {
@@ -272,7 +272,7 @@ export default function CreateUpdateModal({
         setSuccess("Client updated successfully");
         setError(null);
         setLoading(false);
-        onClose();
+        // onClose();
       }
     } catch (error) {
       // console.error('Error updating client:', error);
@@ -333,7 +333,7 @@ export default function CreateUpdateModal({
             {data ? (
               <span>
                 View Client -{" "}
-                <span className="text-app-blue-4">{data?.companyName}</span>
+                <span className="text-app-blue-4">{client?.name}</span>
               </span>
             ) : (
               "Create New Client"

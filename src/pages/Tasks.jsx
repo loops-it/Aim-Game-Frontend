@@ -75,7 +75,7 @@ export default function Tasks() {
             <div className='flex justify-between gap-5 items-center' >
                 <div className='flex flex-col gap-1' >
                     <div className='flex items-center gap-1 font-semibold' >
-                        <span className='text-app-blue-2' >Task</span>
+                        <span className='text-app-blue-2' >Tasks</span>
                     </div>
                     <div className='h-1 w-[70%] bg-app-yellow' ></div>
                 </div>

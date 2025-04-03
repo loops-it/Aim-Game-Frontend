@@ -132,7 +132,7 @@ export default function CreateUpdateModal({ show, onClose, data }) {
           <div className="font-semibold">
             {data ? (
               <span>
-                View Workspace - <span className="text-app-blue-4">{data?.title}</span>
+                View Workspace - <span className="text-app-blue-4">{data?.name}</span>
               </span>
             ) : (
               "Create New Workspace"
@@ -168,6 +168,13 @@ export default function CreateUpdateModal({ show, onClose, data }) {
             {success && <p className="text-green-500 mt-2 mb-2">{success}</p>}
           </div>
           <div className="flex justify-center items-center gap-5 mb-5">
+          <button
+              onClick={onClose}
+              disabled={loading}
+              className="disabled:bg-app-gray disabled:border-app-gray disabled:text-white flex items-center gap-3 border text-app-blue-2 border-app-blue-2 rounded-lg w-fit px-10 py-2"
+            >
+              Cancel
+            </button>
             <button
               onClick={() => { data ? onUpdate() : onCreate(); }}
               disabled={loading}

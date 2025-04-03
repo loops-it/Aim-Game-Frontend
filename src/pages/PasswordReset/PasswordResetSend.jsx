@@ -26,11 +26,13 @@ export default function PasswordResetSend({ title }) {
                 
                 body: JSON.stringify({email}),
             });
-
+            
             if (!response.ok) {
+               
                 document.getElementById("page-loader").style.display = 'none';
                 const errorData = await response.json();
-                setError(errorData.errors);
+                setError('Invalid email address');
+                // console.log(errorData);
             } else {
                 document.getElementById("page-loader").style.display = 'none';
                 // const data = await response.json();
@@ -59,7 +61,7 @@ export default function PasswordResetSend({ title }) {
                 {error && <p className="text-red-500">{error}</p>}
                 <MainButton
                     className="mt-5"
-                >{"Send Link"}</MainButton>
+                >{"Send OTP"}</MainButton>
             </form>
         </GuestLayout>
     )

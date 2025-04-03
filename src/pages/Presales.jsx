@@ -53,7 +53,7 @@ export default function Teams({ title }) {
 
   return (
     <AuthenticatedLayout>
-      <div className="flex justify-between gap-5 items-center">
+      <div className="flex justify-end gap-5 items-center">
         {/* <div className='w-[30%] relative flex items-center' >
                     <MainInput
                         placeholder={"Search Email"}
@@ -70,14 +70,14 @@ export default function Teams({ title }) {
           className="flex items-center gap-3 justify-center bg-app-blue-2 rounded-lg w-full lg:w-fit px-6 py-2 text-white"
         >
           <PlusIcon className="w-6 h-6 text-white" />
-          <div>Create Team Member</div>
+          <div>Create Presales Member</div>
         </button>
       </div>
       <div className="bg-white rounded-lg mt-10">
         <div className="flex items-center justify-between h-20 p-5">
           <div className="flex items-center gap-5">
             <div className="text-lg lg:text-2xl text-app-blue font-semibold">
-              Presales
+              All Presales
             </div>
             <button 
              onClick={() => {
