@@ -76,7 +76,7 @@ export default function PasswordReset({ title }) {
       }
 
       // Handle success
-      setSuccess("Password reset successful. You may now log in.");
+      setSuccess("Password reset successfully");
     } catch (err) {
       document.getElementById("page-loader").style.display = "none";
       console.error("Error occurred:", err);

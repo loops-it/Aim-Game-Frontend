@@ -33,6 +33,7 @@ export default function PasswordResetVerify({title}) {
                 document.getElementById("page-loader").style.display = 'none';
                 const errorData = await response.json();
                 setError(errorData.errors);
+                setSuccess("");
             } else {
                 document.getElementById("page-loader").style.display = 'none';
                 const verifyType = localStorage.verifyType;
@@ -49,6 +50,7 @@ export default function PasswordResetVerify({title}) {
             document.getElementById("page-loader").style.display = 'none';
             console.error('Error occurred:', error);
             setError(error.message);
+            setSuccess("");
         }
     };
 

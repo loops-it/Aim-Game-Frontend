@@ -74,19 +74,17 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
   //     }
   // }
   async function onCreate() {
+ 
     setLoading(true);
     setError(null);
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (!emailRegex.test(team.email)) {
-      setError("Invalid email format");
+    //check name
+    if ( team.name.trim() === "") {
+      setError("Name is required");
       setLoading(false);
       setSuccess(null);
       return;
     }
-
-    //check name
 
     const nameRegex = /^[a-zA-Z\s]+$/;
     if (!nameRegex.test(team.name.trim() || team.name.trim() === "")) {
@@ -96,7 +94,34 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
       return;
     }
 
-    //vheck number
+    if (team.designation === null || team.designation === "") {
+      setError("Designation is required.");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    }
+    if (team.userRole === null || team.userRole === "") {
+      setError("Role is required.");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    } 
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (team.email.trim() === "") {
+      setError("Email is required");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    }
+
+    if (!emailRegex.test(team.email)) {
+      setError("Invalid email format");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    }
 
     const phoneRegex = /^0\d{9}$/;
 
@@ -108,16 +133,8 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
       setSuccess(null);
       return;
     }
-    if (team.designation === null || team.designation === "") {
-      setError("Designation is required.");
-      setLoading(false);
-      setSuccess(null);
-    }
-    if (team.userRole === null || team.userRole === "") {
-      setError("Role is required.");
-      setLoading(false);
-      setSuccess(null);
-    } 
+   
+
     try {
       document.getElementById("page-loader").style.display = "block";
       const response = await api.post("/api-v1/team-members", team); 
@@ -147,22 +164,51 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
   }
 
   async function onUpdate() {
-    // console.log(team)
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (!emailRegex.test(team.email)) {
-      setError("Invalid email format");
+    setLoading(true);
+    setError(null);
+    
+    //check name
+    if ( team.name.trim() === "") {
+      setError("Name is required");
       setLoading(false);
+      setSuccess(null);
       return;
     }
-
-    //check name
 
     const nameRegex = /^[a-zA-Z\s]+$/;
     if (!nameRegex.test(team.name.trim() || team.name.trim() === "")) {
       setError("Invalid name format");
       setLoading(false);
+      setSuccess(null);
+      return;
+    }
+
+    if (team.designation === null || team.designation === "") {
+      setError("Designation is required.");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    }
+    if (team.userRole === null || team.userRole === "") {
+      setError("Role is required.");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    } 
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (team.email.trim() === "") {
+      setError("Email is required");
+      setLoading(false);
+      setSuccess(null);
+      return;
+    }
+
+    if (!emailRegex.test(team.email)) {
+      setError("Invalid email format");
+      setLoading(false);
+      setSuccess(null);
       return;
     }
 
@@ -173,30 +219,12 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
         "Invalid phone number format. It should start with 0 and have 10 digits."
       );
       setLoading(false);
+      setSuccess(null);
       return;
     }
-
+   
     try {
-      if (team.name === null || team.name === "") {
-        setError("Name is required.");
-        setSuccess(null);
-      } else if (team.designation === null || team.designation === "") {
-        setError("Designation is required.");
-        setLoading(false);
-        setSuccess(null);
-      } else if (team.userRole === null || team.userRole === "") {
-        setError("Role is required.");
-        setLoading(false);
-        setSuccess(null);
-      } else if (team.email === null || team.email === "") {
-        setError("Email is required.");
-        setLoading(false);
-        setSuccess(null);
-      } else if (team.phone === null || team.phone === "") {
-        setError("phone is required.");
-        setLoading(false);
-        setSuccess(null);
-      } else {
+    
         document.getElementById("page-loader").style.display = "block";
         const response = await api.put(
           `/api-v1/team-members/${team._id}`,
@@ -213,7 +241,7 @@ export default function CreateUpdateModal({ show, onClose, data, type }) {
           setLoading(false);
           console.error("Failed to update Team Member:", response.statusText);
         }
-      }
+      
     } catch (error) {
       document.getElementById("page-loader").style.display = "none";
       setLoading(false);

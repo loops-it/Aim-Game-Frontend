@@ -49,6 +49,27 @@ export default function CreateUpdateModal({
   // }
   async function onCreate() {
     setLoading(true);
+    const missingFields = [];
+
+    if (!client.name) missingFields.push("Name");
+    if (!client.address) missingFields.push("Address");
+    if (!client.email) missingFields.push("Email");
+    if (!client.industryTypeId) missingFields.push("Industry Type");
+    if (!client.workspaceId) missingFields.push("Workspace");
+    if (!client.refNo) missingFields.push("Reference No");
+    if (!client.phone) missingFields.push("Contact Number");
+
+    if (missingFields.length > 0) {
+      //window.alert(`Please fill in all required fields: ${missingFields.join(', ')}.`);
+      setError(
+        `Please fill in all required fields: ${missingFields.join(", ")}.`
+      );
+
+      setSuccess(null);
+      setLoading(false);
+      return;
+    }
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(client.email)) {
       setError("Invalid email format");
@@ -84,26 +105,7 @@ export default function CreateUpdateModal({
     }
 
     try {
-      const missingFields = [];
-
-      if (!client.name) missingFields.push("Name");
-      if (!client.address) missingFields.push("Address");
-      if (!client.email) missingFields.push("Email");
-      if (!client.industryTypeId) missingFields.push("Industry Type");
-      if (!client.workspaceId) missingFields.push("Workspace");
-      if (!client.refNo) missingFields.push("Reference No");
-      if (!client.phone) missingFields.push("Contact Number");
-
-      if (missingFields.length > 0) {
-        //window.alert(`Please fill in all required fields: ${missingFields.join(', ')}.`);
-        setError(
-          `Please fill in all required fields: ${missingFields.join(", ")}.`
-        );
-
-        setSuccess(null);
-        setLoading(false);
-        return;
-      }
+   
 
       document.getElementById("page-loader").style.display = "block";
       const response = await fetch(`${base_url}/api-v1/clients`, {
@@ -194,6 +196,26 @@ export default function CreateUpdateModal({
   // }
 
   async function onUpdate() {
+
+    const missingFields = [];
+
+    if (!client.name) missingFields.push("Name");
+    if (!client.address) missingFields.push("Address");
+    if (!client.email) missingFields.push("Email");
+    if (!client.industryTypeId) missingFields.push("Industry Type");
+    if (!client.workspaceId) missingFields.push("Workspace");
+    if (!client.refNo) missingFields.push("Reference No");
+    if (!client.phone) missingFields.push("Contact Number");
+
+    if (missingFields.length > 0) {
+      setError(
+        `Please fill in all required fields: ${missingFields.join(", ")}.`
+      );
+
+      setSuccess(null);
+      return;
+    }
+    
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(client.email)) {
       setError("Invalid email format");
@@ -231,24 +253,7 @@ export default function CreateUpdateModal({
 
     console.log(client);
     try {
-      const missingFields = [];
-
-      if (!client.name) missingFields.push("Name");
-      if (!client.address) missingFields.push("Address");
-      if (!client.email) missingFields.push("Email");
-      if (!client.industryTypeId) missingFields.push("Industry Type");
-      if (!client.workspaceId) missingFields.push("Workspace");
-      if (!client.refNo) missingFields.push("Reference No");
-      if (!client.phone) missingFields.push("Contact Number");
-
-      if (missingFields.length > 0) {
-        setError(
-          `Please fill in all required fields: ${missingFields.join(", ")}.`
-        );
-
-        setSuccess(null);
-        return;
-      }
+    
       document.getElementById("page-loader").style.display = "block";
       //const response = await api.put(`/api-v1/clients/${client._id}`, client);
       const response = await fetch(`${base_url}/api-v1/clients/${client._id}`, {
@@ -354,7 +359,7 @@ export default function CreateUpdateModal({
                             onChange={file => setClient({ ...client, photo: file })}
                             value={client?.photo}
                         /> */}
-            <MainImageInput
+           <MainImageInput
               type="client"
               onChange={(file) => {
                 const reader = new FileReader();
@@ -366,15 +371,15 @@ export default function CreateUpdateModal({
               value={client?.photo}
             />
           
-              <div className="mt-4 flex justify-center ">
-                <button
-                style={{fontSize: "14px"}}
-                  onClick={() => setClient({ ...client, photo: null })}
-                  className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 remove-img-btn"
-                >
-                  Remove Image
-                </button>
-              </div>
+          <div className="mt-4 flex justify-center">
+      <button
+        style={{ fontSize: "14px" }}
+        onClick={() => setClient({ ...client, photo: null })}
+        className="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 remove-img-btn"
+      >
+        Remove Image
+      </button>
+    </div>
            
           </div>
 
