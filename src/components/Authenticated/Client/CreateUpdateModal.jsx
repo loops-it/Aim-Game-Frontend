@@ -106,7 +106,7 @@ export default function CreateUpdateModal({
 
     try {
    
-
+      console.log("create client sent: ", client)
       document.getElementById("page-loader").style.display = "block";
       const response = await fetch(`${base_url}/api-v1/clients`, {
         method: "POST",
@@ -118,6 +118,8 @@ export default function CreateUpdateModal({
         body: JSON.stringify(client),
       });
 
+      const createClient = await response.json();
+      console.log("create client: ", createClient)
       if (!response.ok) {
         document.getElementById("page-loader").style.display = "none";
         const errorData = await response.json();
@@ -265,6 +267,9 @@ export default function CreateUpdateModal({
 
         body: JSON.stringify(client),
       });
+      const cliendResponse = await response.json();
+      console.log("client update:",cliendResponse )
+
 
       if (!response.ok) {
         document.getElementById("page-loader").style.display = "none";
